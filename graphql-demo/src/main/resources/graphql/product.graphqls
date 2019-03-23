@@ -1,0 +1,34 @@
+type Product {
+	id: ID!,
+	title: String!,
+	shortDesc: String!,
+	longDesc:String,
+	displayName:String!,
+	listPrice:Float!,
+	salePrice:Float,
+	upc:String!,
+	mpn:String!,
+	reviews:[Review],
+	techSpecs:[TechSpecs]
+}
+type Review {
+   id: ID!,
+   reviewTitle: String!,
+   reviewText: String!,
+   submittedBy: String!,
+   rating:Int!
+}
+type TechSpecs {
+   id: ID!,
+   key: String!,
+   value: String!
+}
+type Seo {
+   metaTitle: String!,
+   metaKeywords: String!,
+   metaDescription: String!,
+   slug: String!
+}
+type Query {
+	product(id: ID!): Product
+}
