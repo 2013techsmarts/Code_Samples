@@ -15,11 +15,13 @@ public class Evaluator {
 
     public List<String> evaluate(User user) {
         List<String> errors = new ArrayList<>();
-        for (IValidateRule rule : rules) {
-            if (!rule.validate(user)) {
-                errors.add(rule.errorMessage());
-            }
-        }
+        //Iterate the list of rules to perform the validations.
+        //Collect error message if any validation fails.
+        rules.stream()
+                .filter(rule -> !rule.validate(user))
+                .map(IValidateRule::errorMessage)
+                .forEach(errors::add);
+
         return errors;
     }
 }
