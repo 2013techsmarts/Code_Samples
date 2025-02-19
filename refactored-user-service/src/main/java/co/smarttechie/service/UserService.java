@@ -1,10 +1,13 @@
 package co.smarttechie.service;
 
 import co.smarttechie.model.User;
-import co.smarttechie.rules.*;
+import co.smarttechie.rules.Evaluator;
+import co.smarttechie.rules.UsernameRule;
+import co.smarttechie.rules.PasswordRule;
+import co.smarttechie.rules.EmailRule;
+import co.smarttechie.rules.AgeRule;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
