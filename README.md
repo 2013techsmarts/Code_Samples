@@ -24,3 +24,16 @@ This repository contains sample projects created while exploring new technologie
     }
   }
 }
+
+# Follow below steps to setup legacy-user-service and refactored-user-service project based on https://youtu.be/ebdAdkIuDEc
+
+Title: Simplify Complex Validation Logic with the Rules Design Pattern | Spring Boot
+
+Description:
+Struggling with complex validation logic in your application? Not able to manage and write unit tests? The Rules Design Pattern will save you.  In this video, I will walk you through how to simplify and structure your validation logic using this powerful design pattern. We can achieve S.O.L.I.D principles when we apply Rules Design Pattern.
+
+🔥 What You’ll Learn:
+✅ What is the Rules Design Pattern?
+✅ Why use it for validation?
+✅ Look at the legacy code which has complex validation logic
+✅ How to refactor the legacy code with Rules Design Pattern
