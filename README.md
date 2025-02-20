@@ -27,6 +27,7 @@ This repository contains sample projects created while exploring new technologie
 
 # Follow below steps to setup legacy-user-service and refactored-user-service project based on https://youtu.be/ebdAdkIuDEc
 
+The blog on the same is here https://smarttechie.co/refactoring-complex-conditional-logic-with-rules-design-pattern-d9a348c18f14
 Title: Simplify Complex Validation Logic with the Rules Design Pattern | Spring Boot
 
 Description:
