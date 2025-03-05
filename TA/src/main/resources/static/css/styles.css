@@ -1,0 +1,171 @@
+/* Custom CSS for bubble layout */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+}
+
+/* Banner with floating effect */
+.banner {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px;
+    background-image: url('../images/banner.jpg'); /* Use the banner image */
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    animation: float 3s ease-in-out infinite;
+    color: black; /* Black text for better contrast */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.banner h1 {
+    font-size: 2.5em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* White shadow for better readability */
+}
+
+/* Bubble container and bubbles */
+.bubble-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 160px); /* Adjust for banner height */
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%; /* Perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 20px;
+    width: 120px; /* Fixed size for perfect circle */
+    height: 120px; /* Fixed size for perfect circle */
+    word-wrap: break-word;
+    user-select: none; /* Prevent text selection */
+    transition: transform 0.2s ease; /* Smooth movement */
+    color: #333; /* Dark text color for visibility */
+}
+
+.bubble.dragging {
+    transform: scale(1.1); /* Slightly enlarge when dragging */
+}
+
+/* Water ripple effect */
+.water-ripple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 50%;
+    animation: ripple 1s infinite;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.bubble .content {
+    display: none;
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 15px;
+    border-radius: 20px;
+    min-width: 150px; /* Minimum width */
+    max-width: 300px; /* Maximum width */
+    text-align: center;
+    font-size: 0.9em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break long words if necessary */
+    margin-bottom: 10px; /* Add some space between the bubble and the hover content */
+}
+
+.bubble:hover .content {
+    display: block;
+}
+
+.bubble .content::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Position below the hover content */
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Next button container */
+.next-button-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 100; /* Ensure the button is above other elements */
+}
+
+/* Next button */
+#next-button #ref-button{
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 25px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#next-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Card styles */
+.card {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 20px;
+}

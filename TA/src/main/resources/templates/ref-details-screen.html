@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Reference Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your custom CSS -->
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-5">Tech References and Resources</h1>
+
+    <!-- Dynamic Rendering of References -->
+    <div th:each="ref : ${refs}">
+        <div class="card mb-3">
+            <div class="card-header">
+                <p class="card-text" th:text="${ref.description}"></p>
+            </div>
+            <div class="card-body">
+                <a th:href="${ref.title}" th:text="${ref.title}" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
