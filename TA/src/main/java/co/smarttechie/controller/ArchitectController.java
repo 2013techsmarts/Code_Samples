@@ -112,4 +112,20 @@ public class ArchitectController {
         return "ref-details-screen";
 
     }
+
+    @GetMapping("/thank-you")
+    public String getThankYouScreen(Model model) {
+        // Create a list of requirements
+        List<Requirement> requirements = List.of(
+                new Requirement("https://topmate.io/siva_janapati", "I hope you got insights on what is required to become a " +
+                        "Technical Architect. If you want more guidance, feel free to book 1-on-1 discussion with me.")
+        );
+
+        // Add the list to the model
+        model.addAttribute("thanks", requirements);
+
+        // Return the Thymeleaf template name
+        return "thank-you-screen";
+
+    }
 }

@@ -64,6 +64,11 @@ function handleRefDetailsButtonClick() {
     window.location.href = '/ref-details';
 }
 
+// Function to handle the Next button click
+function handleThanksButtonClick() {
+    window.location.href = '/thank-you';
+}
+
 // Initialize functions when the page loads
 window.onload = () => {
     positionBubbles();
@@ -75,10 +80,16 @@ window.onload = () => {
         nextButton.addEventListener('click', handleTechDetailsButtonClick);
     }
 
-// Get the Ref button and add an event listener
+    // Get the Ref button and add an event listener
     const refButton = document.getElementById('ref-button');
     if (refButton) {
         refButton.addEventListener('click', handleRefDetailsButtonClick);
+    }
+
+    // Get the Ref button and add an event listener
+    const thanksButton = document.getElementById('thanks-button');
+    if (refButton) {
+        refButton.addEventListener('click', handleThanksButtonClick);
     }
 };
 

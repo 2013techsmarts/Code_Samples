@@ -138,7 +138,7 @@ body, html {
 }
 
 /* Next button */
-#next-button #ref-button{
+#next-button #ref-button #thanks-button{
     padding: 10px 20px;
     font-size: 1.2em;
     border-radius: 25px;

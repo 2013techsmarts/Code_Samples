@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You!!!</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your custom CSS -->
+    <style>
+        /* Custom CSS to style the rocket image */
+        .rocket {
+            width: 64px; /* Adjust size as needed */
+            height: 64px;
+            vertical-align: middle; /* Align with the text */
+            margin-left: 10px; /* Add some spacing */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-5">Thank You!!!
+        <!-- Add the rocket image beside the text -->
+        <picture class="rocket">
+            <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.webp" type="image/webp">
+            <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.gif" alt="🚀" width="64" height="64">
+        </picture>
+    </h1>
+
+    <!-- Dynamic Rendering of References -->
+    <div th:each="ref : ${thanks}">
+        <div class="card mb-3">
+            <div class="card-header">
+                <p class="card-text" th:text="${ref.description}"></p>
+            </div>
+            <div class="card-body">
+                <a th:href="${ref.title}" th:text="${ref.title}" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
