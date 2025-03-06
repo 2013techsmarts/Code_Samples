@@ -51,14 +51,15 @@ public class ArchitectController {
     public String getTechDetailsScreen(Model model) {
         // Create a list of requirements
         List<Requirement> requirements = List.of(
-                new Requirement("Be Hands-On and Versatile", "Master at least one programming language (e.g., Node.js, Python, .NET). Gain familiarity with other languages and frameworks."),
+                new Requirement("Be Hands-On and Versatile", "Master at least one programming language (e.g.,Java, Node.js, Python, .NET). Gain familiarity with other languages and frameworks too."),
                 new Requirement("Architectural Knowledge", "Understand architectures like N-tier, Monolith, Microservices, Event-Driven, and Micro Frontends. Evaluate tradeoffs to choose the right architecture for the project."),
                 new Requirement("TDD/BDD and Test Coverage", "Practice Test-Driven Development (TDD) and Behavior-Driven Development (BDD). Encourage high test coverage with unit and integration tests."),
                 new Requirement("Cloud and Containerization", "Understand cloud architectures and services (e.g., AWS, Azure, GCP). Work with Docker and Kubernetes for container orchestration."),
                 new Requirement("CI/CD and DevOps Tools", "Use tools like Jenkins, Terraform, GitLab, and SonarQube. Implement CI/CD pipelines for automated testing and deployments."),
-                new Requirement("Database Expertise", "Understand RDBMS and NoSQL databases (e.g., MongoDB, Cassandra). Apply tuning techniques like sharding, partitioning, and normalization."),
-                new Requirement("Caching Technologies", "Use caching tools like Redis and Hazelcast."),
-                new Requirement("API Knowledge", "Understand API styles like SOAP, REST, and GraphQL. Work with API gateways like APIGEE and cloud-specific gateways."),
+                new Requirement("Database Expertise", "Understand RDBMS and NoSQL databases (e.g., MongoDB, Cassandra). Apply tuning techniques like sharding, partitioning, normalization/De-normalization" +
+                        " Replication, Failover techniques, CAP Theorem"),
+                new Requirement("Caching Technologies", "Use caching tools like Redis and Hazelcast. LRU/MRU etc. "),
+                new Requirement("API Knowledge", "Understand API styles like SOAP, REST, GraphQL, gRPC. Work with API gateways like APIGEE and cloud-specific gateways."),
                 new Requirement("Messaging Systems", "Use messaging systems like RabbitMQ and Apache Kafka."),
                 new Requirement("Application Security", "Follow OWASP guidelines and manage vulnerabilities. Understand encryption, hashing, and digital signatures."),
                 new Requirement("Compliance Protocols", "Adhere to GDPR, HIPAA, and PCI compliance standards."),
@@ -66,7 +67,7 @@ public class ArchitectController {
                 new Requirement("Agile Practices", "Participate in Agile ceremonies like sprint planning and retrospectives. Collaborate using tools like JIRA, Confluence, and Wiki."),
                 new Requirement("Showcase Your Work", "Present achievements in big room or PI planning sessions. Market your work and highlight OKRs (Objectives and Key Results)."),
                 new Requirement("AI and GenAI", "Understand AI, LLMs, and tools like GitHub Copilot."),
-                new Requirement("Design Patterns", "Apply design patterns like CQRS, Circuit Breaker, and 12-Factor App.")
+                new Requirement("Design Patterns", "Apply design patterns. Adopt patterns like CQRS, Circuit Breaker, and 12-Factor App.")
         );
 
         // Add the list to the model
@@ -83,6 +84,8 @@ public class ArchitectController {
                 new Requirement("https://www.thoughtworks.com/en-us/radar", "Technology Radar"),
                 new Requirement("https://www.infoq.com/", "InfoQ"),
                 new Requirement("https://dzone.com/", "DZone"),
+                new Requirement("https://owasp.org/www-project-top-ten/", "Owasp"),
+                new Requirement("https://nvd.nist.gov/vuln/vulnerability-detail-pages", "National Vulnerability Database"),
                 new Requirement("https://netflixtechblog.com/", "Netflix TechBlog"),
                 new Requirement("https://tech.walmart.com/content/walmart-global-tech/en_us/blog/post.html", "Walmart TechBlog"),
                 new Requirement("https://www.allthingsdistributed.com/", "All Things Distributed"),
@@ -102,7 +105,12 @@ public class ArchitectController {
                 new Requirement("https://cloud.withgoogle.com/next/25", "Google Next"),
                 new Requirement("https://www.coursera.org/", "Coursera"),
                 new Requirement("https://www.udemy.com/", "Udemy. You will get courses for $10. Most of the times they will be running promotions. Some organizations will have business accounts through which you can learn any course for free."),
-                new Requirement("https://www.freecodecamp.org/news/", "FreeCodeCamp. Free courses.")
+                new Requirement("https://www.freecodecamp.org/news/", "FreeCodeCamp. Free courses."),
+                new Requirement("https://spring.io/blog", "Spring blog"),
+                new Requirement("https://microservices.io/", "Microservice Architecture"),
+                new Requirement("https://refactoring.guru/design-patterns", "Design Patterns"),
+                new Requirement("https://12factor.net/", "twelve-factor app"),
+                new Requirement("https://www.uber.com/en-IN/blog/engineering/", "Uber Tech Blog")
         );
 
         // Add the list to the model
@@ -118,7 +126,8 @@ public class ArchitectController {
         // Create a list of requirements
         List<Requirement> requirements = List.of(
                 new Requirement("https://topmate.io/siva_janapati", "I hope you got insights on what is required to become a " +
-                        "Technical Architect. If you want more guidance, feel free to book 1-on-1 discussion with me.")
+                        "Technical Architect. If you want more guidance, feel free to book 1-on-1 discussion with me."),
+                new Requirement("https://github.com/2013techsmarts/Code_Samples/tree/master/TA", "Get the presentation from my GitHub.")
         );
 
         // Add the list to the model

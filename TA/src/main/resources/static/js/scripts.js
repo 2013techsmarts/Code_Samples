@@ -88,8 +88,8 @@ window.onload = () => {
 
     // Get the Ref button and add an event listener
     const thanksButton = document.getElementById('thanks-button');
-    if (refButton) {
-        refButton.addEventListener('click', handleThanksButtonClick);
+    if (thanksButton) {
+        thanksButton.addEventListener('click', handleThanksButtonClick);
     }
 };
 
