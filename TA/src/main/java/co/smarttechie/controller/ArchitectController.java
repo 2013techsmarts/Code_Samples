@@ -64,7 +64,7 @@ public class ArchitectController {
                 new Requirement("Search Tools", "Search tools like Apache Solr, Elastic Search etc."),
                 new Requirement("API Knowledge", "Understand API styles like SOAP, REST, GraphQL, gRPC. Work with API gateways like APIGEE and cloud-specific gateways."),
                 new Requirement("Messaging Systems", "Use messaging systems like RabbitMQ and Apache Kafka."),
-                new Requirement("Application Security", "Follow OWASP guidelines and manage vulnerabilities. Understand encryption, hashing, and digital signatures."),
+                new Requirement("Application Security", "Follow OWASP guidelines and manage vulnerabilities. Understand encryption, hashing, and TLS/mTLS"),
                 new Requirement("Compliance Protocols", "Adhere to GDPR, HIPAA, and PCI compliance standards."),
                 new Requirement("Observability Tools", "Use tools like ELK Stack, Datadog, Prometheus, and Grafana. Set up structured logging, alerts, and monitoring."),
                 new Requirement("Agile Practices", "Participate in Agile ceremonies like sprint refinement, planning and retrospectives. Collaborate using tools like JIRA, Confluence, and Wiki."),
