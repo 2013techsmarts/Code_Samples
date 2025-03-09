@@ -2,8 +2,6 @@ package co.smarttechie.service;
 
 import org.springframework.stereotype.Service;
 
-import co.smarttechie.model.ProductRecord;
-import co.smarttechie.entity.Product;
 import co.smarttechie.grpc.CreateProductRequest;
 import co.smarttechie.grpc.CreateProductResponse;
 import co.smarttechie.grpc.GetProductRequest;
@@ -17,24 +15,26 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ProductService extends ProductServiceImplBase {
-
+    
     private final ProductRepository productRepository;
 
     @Override
     public void createProduct(CreateProductRequest request, StreamObserver<CreateProductResponse> responseObserver) {
         try {
-            Product product = Product.builder()
-                .name(request.getName())
-                .salePrice(request.getSalePrice())
-                .build();
+            co.smarttechie.model.Product product = new co.smarttechie.model.Product(
+                null,
+                request.getName(),
+                request.getSalePrice(),
+                null
+            );
 
-            Product savedProduct = productRepository.save(product);
-            ProductRecord productRecord = ProductRecord.fromEntity(savedProduct);
+            co.smarttechie.entity.Product savedEntity = productRepository.save(product.toEntity());
+            co.smarttechie.model.Product savedProduct = co.smarttechie.model.Product.fromEntity(savedEntity);
 
             co.smarttechie.grpc.Product grpcProduct = co.smarttechie.grpc.Product.newBuilder()
-                .setId(productRecord.id())
-                .setName(productRecord.name())
-                .setSalePrice(productRecord.salePrice())
+                .setId(savedProduct.id())
+                .setName(savedProduct.name())
+                .setSalePrice(savedProduct.salePrice())
                 .build();
 
             CreateProductResponse response = CreateProductResponse.newBuilder()
@@ -54,15 +54,15 @@ public class ProductService extends ProductServiceImplBase {
     @Override
     public void getProduct(GetProductRequest request, StreamObserver<GetProductResponse> responseObserver) {
         try {
-            Product product = productRepository.findById(request.getProductId())
+            co.smarttechie.entity.Product entity = productRepository.findById(request.getProductId())
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-            ProductRecord productRecord = ProductRecord.fromEntity(product);
+            co.smarttechie.model.Product product = co.smarttechie.model.Product.fromEntity(entity);
 
             co.smarttechie.grpc.Product grpcProduct = co.smarttechie.grpc.Product.newBuilder()
-                .setId(productRecord.id())
-                .setName(productRecord.name())
-                .setSalePrice(productRecord.salePrice())
+                .setId(product.id())
+                .setName(product.name())
+                .setSalePrice(product.salePrice())
                 .build();
 
             GetProductResponse response = GetProductResponse.newBuilder()

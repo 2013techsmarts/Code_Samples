@@ -1,28 +1,26 @@
-# Spring Boot gRPC Application
+# Spring Boot REST API
 
-This project demonstrates the implementation of a gRPC server using Spring Boot, featuring product management functionality with an H2 database backend.
+This project demonstrates the implementation of a REST API using Spring Boot, featuring product management functionality with an H2 database backend.
 
 ## Prerequisites
 
-- Java 23
+- Java 17
 - Maven 3.6.3 or higher
 - Git (optional, for cloning the repository)
 
 ## Project Structure
 
 ```
-Spring-gRPC/
+Spring-REST/
 ├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── co/smarttechie/
-│   │   │       ├── config/
+│   │   │       ├── controller/
 │   │   │       ├── model/
 │   │   │       ├── repository/
 │   │   │       ├── service/
-│   │   │       └── SpringGRpcApplication.java
-│   │   ├── proto/
-│   │   │   └── product.proto
+│   │   │       └── SpringRestApplication.java
 │   │   └── resources/
 │   │       └── application.yml
 │   └── test/
@@ -32,8 +30,8 @@ Spring-gRPC/
 ## Technology Stack
 
 - Spring Boot 3.4.3
-- gRPC 1.62.2
-- Protocol Buffers 3.25.3
+- Spring MVC
+- Spring Data JPA
 - H2 Database
 - Project Lombok
 - Maven
@@ -43,18 +41,13 @@ Spring-gRPC/
 1. **Clone the Repository** (if using Git)
    ```bash
    git clone <repository-url>
-   cd Spring-gRPC
+   cd Spring-REST
    ```
 
 2. **Build the Project**
    ```bash
    mvn clean install
    ```
-   This command will:
-   - Generate Java classes from the Protocol Buffer definitions
-   - Compile the project
-   - Run tests
-   - Create an executable JAR file
 
 ## Running the Application
 
@@ -65,74 +58,65 @@ Spring-gRPC/
    This will:
    - Start the Spring Boot application
    - Initialize the H2 database
-   - Start the gRPC server on port 9090
-   - Run a test client that creates a sample product
+   - Start the REST server on port 8080
 
-2. **Verify the Application**
-   - The application will automatically run a test client on startup
-   - You should see logs indicating:
-     - Successful server startup
-     - Database initialization
-     - Sample product creation
-     - gRPC communication success
+2. **Access the Application**
+   - The REST API will be available at: http://localhost:8080
+   - H2 Console will be available at: http://localhost:8080/h2-console
 
-## Testing the Application
+## Testing the API
 
-The application includes a built-in test client that demonstrates:
-- Creating a product (iPhone 15 Pro at $999.99)
-- Receiving confirmation from the server
-- Storing the product in the H2 database
+You can test the REST endpoints using curl or any API testing tool like Postman:
 
-Expected output for successful product creation:
+1. **Create a Product**
+   ```bash
+   curl -X POST http://localhost:8080/api/products \
+   -H "Content-Type: application/json" \
+   -d '{
+       "name": "iPhone 15 Pro",
+       "salePrice": 999.99
+   }'
+   ```
+
+2. **Get a Product**
+   ```bash
+   curl http://localhost:8080/api/products/1
+   ```
+
+Expected Response Format:
+```json
+{
+    "id": 1,
+    "name": "iPhone 15 Pro",
+    "salePrice": 999.99
+}
 ```
-Product created successfully!
-Product ID: 1
-Product Name: iPhone 15 Pro
-Product Price: $999.99
-Server Message: Product created successfully
-```
 
-## Configuration
+## API Endpoints
 
-Key configuration files:
-- `application.yml`: Contains Spring Boot and H2 database configurations
-- `pom.xml`: Project dependencies and build configurations
-- `product.proto`: gRPC service and message definitions
+- POST `/api/products` - Create a new product
+- GET `/api/products/{id}` - Get a product by ID
 
 ## Database
 
 The application uses an H2 in-memory database:
 - Database URL: jdbc:h2:mem:productdb
-- Console URL: http://localhost:8080/h2-console (when enabled)
+- Console URL: http://localhost:8080/h2-console
+- Username: sa
+- Password: (empty)
 - Tables:
   - products (id, name, sale_price)
 
-## Troubleshooting
-
-1. **Java Version Issues**
-   - Ensure Java 23 is installed: `java -version`
-   - Verify JAVA_HOME is set correctly
-
-2. **Build Failures**
-   - Clear Maven cache: `mvn clean`
-   - Update Maven dependencies: `mvn dependency:resolve`
-   - Verify protobuf compiler installation
-
-3. **Runtime Issues**
-   - Check port 9090 is available for gRPC server
-   - Verify H2 database configuration
-   - Review application logs for errors
-
 ## Additional Notes
 
-- gRPC server runs on port 9090 by default
-- The H2 database is in-memory and will be reset on application restart
+- The application uses an in-memory H2 database that resets on restart
+- Input validation is implemented using Jakarta Validation
 - Lombok is used to reduce boilerplate code
 
 ## Support
 
 For issues and questions:
-1. Check the troubleshooting section
+1. Check the API documentation
 2. Review application logs
-3. Verify configuration files
+3. Verify database connection
 4. Check port availability 

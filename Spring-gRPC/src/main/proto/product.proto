@@ -11,6 +11,15 @@ message Product {
   int64 id = 1;
   string name = 2;
   double sale_price = 3;
+  repeated Review reviews = 4;
+}
+
+// Review message containing review details
+message Review {
+  int64 id = 1;
+  string comment = 2;
+  int32 rating = 3;
+  string reviewer_name = 4;
 }
 
 // Request message for creating a product
@@ -36,6 +45,31 @@ message GetProductResponse {
   string message = 2;
 }
 
+// Request message for adding a review to a product
+message AddReviewRequest {
+  int64 product_id = 1;
+  string comment = 2;
+  int32 rating = 3;
+  string reviewer_name = 4;
+}
+
+// Response message for add review operation
+message AddReviewResponse {
+  Review review = 1;
+  string message = 2;
+}
+
+// Request message for getting product reviews
+message GetProductReviewsRequest {
+  int64 product_id = 1;
+}
+
+// Response message for get product reviews operation
+message GetProductReviewsResponse {
+  repeated Review reviews = 1;
+  string message = 2;
+}
+
 // Product service definition
 service ProductService {
   // Create a new product
@@ -43,4 +77,10 @@ service ProductService {
   
   // Get a product by ID
   rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+  
+  // Add a review to a product
+  rpc AddReview(AddReviewRequest) returns (AddReviewResponse) {}
+  
+  // Get product reviews
+  rpc GetProductReviews(GetProductReviewsRequest) returns (GetProductReviewsResponse) {}
 } 
