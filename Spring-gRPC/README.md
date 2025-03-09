@@ -104,29 +104,6 @@ service ProductService {
 }
 ```
 
-## Database Schema
-
-### Products Table
-```sql
-CREATE TABLE products (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    sale_price DOUBLE
-);
-```
-
-### Reviews Table
-```sql
-CREATE TABLE reviews (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    comment VARCHAR(255),
-    rating INTEGER,
-    reviewer_name VARCHAR(255),
-    product_id BIGINT NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);
-```
-
 ## Client Usage Example
 
 ```javascript

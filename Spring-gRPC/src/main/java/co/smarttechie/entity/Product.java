@@ -37,8 +37,4 @@ public class Product {
         review.setProduct(this);
     }
 
-    public void removeReview(Review review) {
-        reviews.remove(review);
-        review.setProduct(null);
-    }
-} 
+}
