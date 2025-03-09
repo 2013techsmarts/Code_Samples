@@ -17,10 +17,10 @@ public class ReviewResolver {
         return reviewService.addReview(
                 input.productId(),
                 input.reviewerName(),
-                input.content(),
+                input.comment(),
                 input.rating()
         );
     }
 
-    record AddReviewInput(Long productId, String reviewerName, String content, Integer rating) {}
+    record AddReviewInput(Long productId, String reviewerName, String comment, Integer rating) {}
 } 

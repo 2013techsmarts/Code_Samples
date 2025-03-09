@@ -1,0 +1,187 @@
+{
+  "name": "Spring GraphQL Collection",
+  "version": "1",
+  "items": [
+    {
+      "type": "folder",
+      "name": "Products",
+      "root": {
+        "meta": {
+          "name": "Products"
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Get All Products",
+          "seq": 3,
+          "request": {
+            "url": "{{baseUrl}}/graphql",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\"query\":\"query { allProducts { id name description salePrice reviews { reviewerName rating comment } } }\"}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Product",
+          "seq": 1,
+          "request": {
+            "url": "{{baseUrl}}/graphql",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\"query\":\"mutation CreateProduct($input: CreateProductInput!) { createProduct(input: $input) { id name description salePrice } }\",\"variables\":{\"input\":{\"name\":\"Gaming Laptop\",\"description\":\"High-performance gaming laptop with RTX 4080\",\"salePrice\":1999.99}}}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get Product",
+          "seq": 2,
+          "request": {
+            "url": "{{baseUrl}}/graphql",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\"query\":\"query GetProduct($id: ID!) { productById(id: $id) { id name description salePrice reviews { id reviewerName rating } } }\",\"variables\":{\"id\":\"1\"}}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Reviews",
+      "root": {
+        "meta": {
+          "name": "Reviews"
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Add Product Review",
+          "seq": 1,
+          "request": {
+            "url": "{{baseUrl}}/graphql",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\"query\":\"mutation AddReview($input: AddReviewInput!) { addReview(input: $input) { id reviewerName comment rating product { id name } } }\",\"variables\":{\"input\":{\"productId\":\"1\",\"reviewerName\":\"John Doe\",\"comment\":\"Excellent gaming performance and build quality\",\"rating\":5}}}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "root": {
+    "request": {
+      "auth": {
+        "mode": "none"
+      },
+      "vars": {
+        "req": [
+          {
+            "name": "baseUrl",
+            "value": "http://localhost:8180",
+            "enabled": true,
+            "local": false,
+            "uid": "jLNXUJ0VcUGAryj22GEvF"
+          }
+        ]
+      }
+    },
+    "meta": {
+      "name": "Spring GraphQL Collection"
+    }
+  },
+  "brunoConfig": {
+    "version": "1",
+    "name": "Spring GraphQL Collection",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

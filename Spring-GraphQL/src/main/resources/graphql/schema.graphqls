@@ -9,7 +9,7 @@ type Product {
 type Review {
     id: ID!
     reviewerName: String!
-    content: String!
+    comment: String!
     rating: Int!
     product: Product!
 }
@@ -33,6 +33,6 @@ input CreateProductInput {
 input AddReviewInput {
     productId: ID!
     reviewerName: String!
-    content: String!
+    comment: String!
     rating: Int!
 } 
