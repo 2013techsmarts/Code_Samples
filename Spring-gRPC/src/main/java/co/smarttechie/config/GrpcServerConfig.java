@@ -1,44 +1,59 @@
 package co.smarttechie.config;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import co.smarttechie.service.ProductService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+import co.smarttechie.service.ProductService;
+import co.smarttechie.grpc.ProductServiceGrpc;
+
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Configuration
+@Component
 public class GrpcServerConfig {
 
-    @Value("${grpc.server.port:9090}")
-    private int grpcPort;
-
+    private static final Logger logger = LoggerFactory.getLogger(GrpcServerConfig.class);
     private Server server;
     private final ProductService productService;
 
+    @Autowired
     public GrpcServerConfig(ProductService productService) {
         this.productService = productService;
     }
 
-    @Bean
-    public Server grpcServer() throws IOException {
-        server = ServerBuilder.forPort(grpcPort)
-            .addService(productService)
-            .build()
-            .start();
+    @PostConstruct
+    public void startServer() throws Exception {
+        server = ServerBuilder.forPort(9090)
+                .addService((ProductServiceGrpc.ProductServiceImplBase) productService)
+                .build()
+                .start();
         
-        return server;
+        logger.info("gRPC Server started on port 9090");
+
+        // Add shutdown hook to ensure graceful shutdown
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.info("Shutting down gRPC server...");
+            if (server != null) {
+                server.shutdown();
+            }
+            logger.info("gRPC server shut down successfully");
+        }));
+
+        // Keep the server running
+        server.awaitTermination();
     }
 
     @PreDestroy
-    public void stopGrpcServer() throws InterruptedException {
+    public void stopServer() {
         if (server != null) {
-            server.shutdown().awaitTermination(30, TimeUnit.SECONDS);
+            server.shutdown();
         }
     }
 } 
