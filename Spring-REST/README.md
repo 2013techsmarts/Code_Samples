@@ -108,19 +108,11 @@ The application will start on http://localhost:8080
 
 1. Install Bruno from [usebruno.com](https://www.usebruno.com/)
 2. Open Bruno and click "Import Collection"
-3. Navigate to `rest-collection/spring-rest-api` and select it
+3. Navigate to `rest-collection/rest-collection1.json` and select it
 4. Execute requests in sequence:
    - Create Product
    - Add Review (uses product ID from create response)
    - Get Product
-
-## Database
-
-The application uses H2 in-memory database by default. The database console is available at:
-- URL: http://localhost:8080/h2-console
-- JDBC URL: jdbc:h2:mem:testdb
-- Username: sa
-- Password: (leave empty)
 
 ## Entity Relationships
 
