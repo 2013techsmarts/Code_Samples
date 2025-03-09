@@ -23,7 +23,6 @@ public record Product(
 
     public co.smarttechie.entity.Product toEntity() {
         co.smarttechie.entity.Product product = co.smarttechie.entity.Product.builder()
-            .id(id)
             .name(name)
             .salePrice(salePrice)
             .build();
