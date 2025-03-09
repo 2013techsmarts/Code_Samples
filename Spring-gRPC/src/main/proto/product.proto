@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "co.smarttechie.grpc";
+option java_outer_classname = "ProductProto";
+
+package product;
+
+// Product message containing product details
+message Product {
+  int64 id = 1;
+  string name = 2;
+  double sale_price = 3;
+}
+
+// Request message for creating a product
+message CreateProductRequest {
+  string name = 1;
+  double sale_price = 2;
+}
+
+// Response message for create product operation
+message CreateProductResponse {
+  Product product = 1;
+  string message = 2;
+}
+
+// Request message for getting a product by ID
+message GetProductRequest {
+  int64 product_id = 1;
+}
+
+// Response message for get product operation
+message GetProductResponse {
+  Product product = 1;
+  string message = 2;
+}
+
+// Product service definition
+service ProductService {
+  // Create a new product
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+  
+  // Get a product by ID
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+} 
