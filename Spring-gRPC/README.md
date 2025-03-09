@@ -70,8 +70,7 @@ Spring-gRPC/
 3. **Setup and Run the Client**
    ```bash
    cd client
-   npm install
-   node index.js
+   npm start
    ```
 
 ## gRPC Service Definitions
