@@ -1,0 +1,107 @@
+{
+  "name": "rest-collection1",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Create Product",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8080/api/products",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"name\": \"iPhone 15 Pro\",\n  \"salePrice\": 999.99\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "\n  \n  // Save product ID as environment variable\n  bru.setVar(\"productId\", res.body.id);",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get Product",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8080/api/{{productId}}",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Add Product Review",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:8080/api/{{productId}}/reviews",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"comment\": \"Great product3\",\n  \"rating\": 4.5,\n  \"reviewerName\": \"Siva\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "rest-collection1",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0,
+    "filesCount": 0
+  }
+}
