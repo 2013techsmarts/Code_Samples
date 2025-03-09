@@ -43,7 +43,7 @@ Spring-gRPC/
 
 1. **Clone the Repository** (if using Git)
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/2013techsmarts/Code_Samples
    cd Spring-gRPC
    ```
 
@@ -131,10 +131,3 @@ CREATE TABLE reviews (
 - The project demonstrates proper separation of concerns with entity and model classes
 - gRPC code is automatically generated during the Maven build process
 
-## Support
-
-For issues and questions:
-1. Check the proto definitions
-2. Review application logs
-3. Verify database connection
-4. Check port availability for the gRPC server 
