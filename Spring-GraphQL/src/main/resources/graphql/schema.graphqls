@@ -1,0 +1,38 @@
+type Product {
+    id: ID!
+    name: String!
+    description: String
+    salePrice: Float!
+    reviews: [Review]
+}
+
+type Review {
+    id: ID!
+    reviewerName: String!
+    content: String!
+    rating: Int!
+    product: Product!
+}
+
+type Query {
+    productById(id: ID!): Product
+    allProducts: [Product]!
+}
+
+type Mutation {
+    createProduct(input: CreateProductInput!): Product!
+    addReview(input: AddReviewInput!): Review!
+}
+
+input CreateProductInput {
+    name: String!
+    description: String
+    salePrice: Float!
+}
+
+input AddReviewInput {
+    productId: ID!
+    reviewerName: String!
+    content: String!
+    rating: Int!
+} 
