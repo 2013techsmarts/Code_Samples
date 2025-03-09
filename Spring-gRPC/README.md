@@ -1,26 +1,28 @@
-# Spring Boot REST API
+# Spring Boot gRPC Service
 
-This project demonstrates the implementation of a REST API using Spring Boot, featuring product management functionality with an H2 database backend.
+This project demonstrates the implementation of a gRPC service using Spring Boot, featuring product and review management functionality with an H2 database backend.
 
 ## Prerequisites
 
-- Java 17
+- Java 23
 - Maven 3.6.3 or higher
 - Git (optional, for cloning the repository)
 
 ## Project Structure
 
 ```
-Spring-REST/
+Spring-gRPC/
 ├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── co/smarttechie/
-│   │   │       ├── controller/
+│   │   │       ├── entity/
 │   │   │       ├── model/
 │   │   │       ├── repository/
 │   │   │       ├── service/
-│   │   │       └── SpringRestApplication.java
+│   │   │       └── SpringGRpcApplication.java
+│   │   ├── proto/
+│   │   │   └── product.proto
 │   │   └── resources/
 │   │       └── application.yml
 │   └── test/
@@ -30,7 +32,8 @@ Spring-REST/
 ## Technology Stack
 
 - Spring Boot 3.4.3
-- Spring MVC
+- gRPC 1.62.2
+- Protocol Buffers 3.25.3
 - Spring Data JPA
 - H2 Database
 - Project Lombok
@@ -41,7 +44,7 @@ Spring-REST/
 1. **Clone the Repository** (if using Git)
    ```bash
    git clone <repository-url>
-   cd Spring-REST
+   cd Spring-gRPC
    ```
 
 2. **Build the Project**
@@ -58,65 +61,80 @@ Spring-REST/
    This will:
    - Start the Spring Boot application
    - Initialize the H2 database
-   - Start the REST server on port 8080
+   - Start the gRPC server
 
-2. **Access the Application**
-   - The REST API will be available at: http://localhost:8080
-   - H2 Console will be available at: http://localhost:8080/h2-console
+## gRPC Service Definitions
 
-## Testing the API
+The service is defined in `src/main/proto/product.proto` and includes:
 
-You can test the REST endpoints using curl or any API testing tool like Postman:
+### Messages
+- `Product` - Contains product details (id, name, sale_price, reviews)
+- `Review` - Contains review details (id, comment, rating, reviewer_name)
+- Various request/response messages for different operations
 
-1. **Create a Product**
-   ```bash
-   curl -X POST http://localhost:8080/api/products \
-   -H "Content-Type: application/json" \
-   -d '{
-       "name": "iPhone 15 Pro",
-       "salePrice": 999.99
-   }'
-   ```
-
-2. **Get a Product**
-   ```bash
-   curl http://localhost:8080/api/products/1
-   ```
-
-Expected Response Format:
-```json
-{
-    "id": 1,
-    "name": "iPhone 15 Pro",
-    "salePrice": 999.99
+### Services
+```protobuf
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc AddReview(AddReviewRequest) returns (AddReviewResponse);
+  rpc GetProductReviews(GetProductReviewsRequest) returns (GetProductReviewsResponse);
 }
 ```
 
-## API Endpoints
+## Database Schema
 
-- POST `/api/products` - Create a new product
-- GET `/api/products/{id}` - Get a product by ID
+The application uses an H2 in-memory database with the following tables:
 
-## Database
+### Products Table
+```sql
+CREATE TABLE products (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    sale_price DOUBLE
+);
+```
 
-The application uses an H2 in-memory database:
-- Database URL: jdbc:h2:mem:productdb
-- Console URL: http://localhost:8080/h2-console
-- Username: sa
-- Password: (empty)
-- Tables:
-  - products (id, name, sale_price)
+### Reviews Table
+```sql
+CREATE TABLE reviews (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    comment VARCHAR(255),
+    rating INTEGER,
+    reviewer_name VARCHAR(255),
+    product_id BIGINT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+```
+
+## Features
+
+- Product Management:
+  - Create new products
+  - Retrieve products by ID
+- Review Management:
+  - Add reviews to products
+  - Retrieve product reviews
+
+## Technical Details
+
+- Uses Java Records for DTOs
+- Implements gRPC service with Spring Boot integration
+- Utilizes JPA for database operations
+- Supports bidirectional relationships between products and reviews
+- Runs on Java 23 with preview features enabled
 
 ## Additional Notes
 
 - The application uses an in-memory H2 database that resets on restart
-- Input validation is implemented using Jakarta Validation
-- Lombok is used to reduce boilerplate code
+- Lombok is used to reduce boilerplate code in entity classes
+- The project demonstrates proper separation of concerns with entity and model classes
+- gRPC code is automatically generated during the Maven build process
 
 ## Support
 
 For issues and questions:
-1. Check the API documentation
+1. Check the proto definitions
 2. Review application logs
 3. Verify database connection
-4. Check port availability 
+4. Check port availability for the gRPC server 
