@@ -1,0 +1,30 @@
+server:
+  port: 8380
+
+spring:
+  application:
+    name: Spring-WebSockets
+  
+  # H2 Database Configuration
+  datasource:
+    url: jdbc:h2:mem:trellodb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # JPA Configuration
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  
+  # WebSocket Configuration
+  websocket:
+    max-text-message-size: 8192
+    max-binary-message-size: 8192 
