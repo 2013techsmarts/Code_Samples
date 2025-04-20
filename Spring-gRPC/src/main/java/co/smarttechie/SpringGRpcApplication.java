@@ -12,6 +12,6 @@ public class SpringGRpcApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringGRpcApplication.class, args);
-		logger.info("Spring Boot Application started");
+		logger.info("Spring Boot gRPC Application started");
 	}
 }
