@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -59,7 +58,7 @@ public class ArchitectController {
                         " Build tools like maven, Gradle, npm etc."
                 ),
                 new Requirement("Database Expertise", "Understand RDBMS and NoSQL databases (e.g., MongoDB, Cassandra). Apply tuning techniques like sharding, partitioning, normalization/De-normalization" +
-                        " Replication, Failover techniques, CAP Theorem, NoSQL like mongoDB (Document oriented), Cassandra (Columnar)"),
+                        " Replication, Fail over techniques, CAP Theorem, NoSQL like mongoDB (Document oriented), Cassandra (Columnar)"),
                 new Requirement("Caching Technologies", "Use caching tools like Redis and Hazelcast. LRU/MRU etc. "),
                 new Requirement("Search Tools", "Search tools like Apache Solr, Elastic Search etc."),
                 new Requirement("API Knowledge", "Understand API styles like SOAP, REST, GraphQL, gRPC. Work with API gateways like APIGEE and cloud-specific gateways."),
