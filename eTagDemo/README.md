@@ -16,7 +16,7 @@ A Spring Boot demo project showcasing how to implement ETag-based concurrency co
 
 ### Clone the repository
 ```bash
-git clone [<repo-url>](https://github.com/2013techsmarts/Code_Samples.git)
+git clone https://github.com/2013techsmarts/Code_Samples.git
 cd eTagDemo
 ```
 
